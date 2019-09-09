@@ -1,4 +1,4 @@
-# Booting
+# Booting into Linux
 
 ## 1. Booting là gì?
 
