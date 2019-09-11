@@ -6,8 +6,11 @@
 
 <img src="https://raw.githubusercontent.com/nyugennguyen/selfstudy/master/Linux-RoadtoLPI/Images/linux_bootprocess.png">
 
-NVRAM(ROM) chứa firmware quản lý tất cả các thành phần Hardware trên máy tính, tùy thuộc vào dòng mainboard đang sử dụng mà firmware sử dụng BIOS hay UEFI. Sự khác biệt giữa 2 loại system firmware sẽ được nói chi tiết sau.
-  > Note: trong một vài loại mainboard sau này sẽ gọi BIOS là Legacy boot tùy thuộc vào nhà sản xuất để phân biệt giữa Legacy boot và UEFI
+NVRAM(ROM) chứa firmware quản lý tất cả các thành phần Hardware trên máy tính, tùy thuộc vào dòng mainboard đang sử dụng mà firmware sử dụng BIOS hay UEFI.
+  > Note: trong một vài loại mainboard sau này sẽ gọi BIOS là Legacy boot tùy thuộc vào nhà sản xuất để phân biệt giữa Legacy boot và UEFI.
+
+  - BIOS viết tắt của Basic Input/Output System có thể coi như là phần sụn của hệ thống, được chứa trong bộ nhớ flash hoặc EEPROM trên mainboard. Khi máy tính được mở qua công tắc bật điện hay khi được nhấn nút power,thì BIOS được khởi động và chương trình này sẽ tiến hành các thử nghiệm khám nghiệm trên các ổ đĩa, bộ nhớ, bo hình, các con chip có chức năng riêng khác và các phần cứng còn lại.
+  ###### Tham khảo Wiki [BIOS](src="https://vi.wikipedia.org/wiki/BIOS")
 
 Hệ thống sẽ tự động load Boot loader(GRUB) nằm trong phân vùng ổ cứng được chỉ định . Các phiên bản Linux hiện thời đã hỗ trợ GRUB Version 2.
   
