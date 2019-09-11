@@ -31,16 +31,26 @@ NVRAM(ROM) chứa firmware quản lý tất cả các thành phần Hardware tr�
   - UEFI hoạt động nhanh, hiệu quả và rút ngắn thời gian khởi động do BIOS chỉ chạy ở chế độ xử lý 16-bit với  1MB memory. Nó sẽ gặp sự cố khi khởi tạo nhiều thiết bị phần cứng cùng lúc, dẫn đến tốc độ khởi động chậm khi khởi tạo tất cả các môi trường và thiết bị phần cứng trên những hệ thống PC hiện đại.
   - UEFI hỗ trợ tương thích ngược với những hệ điều hành cũ chưa hỗ trợ UEFI (Legacy boot), secure boot giúp việc khởi động máy tính an toàn hơn.
 
-### 1.2. Boot loader 
-Hệ thống sẽ tự động load Boot loader(GRUB) nằm trong phân vùng ổ cứng được chỉ định . Các phiên bản Linux hiện thời đã hỗ trợ GRUB Version 2.
+### 1.2. Boot loader
+
+**Boot loader** có nhiệm vụ chính là nhận dạng và khởi động kernel hệ điều hành. Hầu hết các boot loader đều hỗ trợ một giao diện UI đơn giản để người dùng có thể chọn lựa kernel hoặc hệ điều hành được cài đặt trên máy ở đây chúng ta sẽ quan tâm tới boot loader mặc định của hệ điều hành Linux. 
+Sau khi pass qua quá trình khởi động system firmware, Boot loader(GRUB) nằm trong phân vùng ổ cứng được chỉ định sẽ chạy một cách tự động. Các phiên bản Linux hiện thời đã hỗ trợ GRUB Version 2.
   
 - GRUB (GRand Unified Bootloader) là một chương trình khởi động máy tính được phát triển bởi dự án GNU. GRUB cung cấp cho người dùng một lựa chọn cho phép khởi động một trong nhiều hệ điều hành được cài trên một máy tính hoặc lựa chọn một cấu hình hạt nhân cụ thể có sẵn trên các phân vùng của một hệ điều hành cụ thể.
   ###### Tham khảo Wiki: [GRUB](https://vi.wikipedia.org/wiki/GRUB)
 
+> Note: Hệ điều hành FreeBSD có boot loader riêng tuy nhiên nó hoàn toàn có thể sử dụng GRUB như là boot loader mặc định nhất là trong trường hợp người dùng cài nhiều hệ điều hành trên cùng một máy tính, nếu như bạn không có nhu cầu thì boot loader mặc định của FreeBSD cũng đã hoàn toàn có thể đáp ứng nhu cầu sử dụng thông thường.
+
+Quay lại với GRUB, GRUB hoàn toàn có thế được cấu hình bằng việc thay đổi cấu hình mặc định trong file grub.cfg, file này thường đặt trong *boot/grub* hoặc *boot/grub2* trong hệ điều hành Redhat/Centos.
+ - Bạn có thể tự tạo file grub.cfg bằng cách generate sử dụng grub-mkconfig (update-grub đối với hệ điều hành Debian và Ubuntu). Việc tạo ra file này có thể đơn giản thực hiện bằng việc chỉnh sửa các cấu hình có sẵn trong file /etc/default/grub sau đó chạy grub-mkconfig để biên dịch ra file grub.cfg mới.
+ - Để thay đổi thứ tự khởi động kernel được list ra trong boot menu hoặc để set boot password,.... Chúng ta cần chỉnh sửa file /etc/grub.d/40_custom. Sau khi chỉnh sửa xong ta lại chạy file grub-mkconfig để biên dịch ra file config mới.
+ - GRUB hỗ trợ việc sử dụng command line trong thời gian boot, để bật giao diện command line ta phải ấn "c" khi đang trong giao diện GRUB boot screen. Các câu lệnh GRUB tham khảo tại [GNU.org](src= "http://www.gnu.org/software/grub/manual/grub/").
+ - Nhờ việc cho phép thay đổi và lựa chọn kernel trước khi tiến hành khởi động OS, sysadmin có thể dễ dàng hơn trong việc update các bản vá cho kernel hoặc thay đổi kernel mới mà không phải quá lo lắng trong trường hợp OS không khởi động được. Hãy luôn nhớ tạo 1 kernel backup trong mọi thời điểm và trong trường hợp bản vá mới nhất không hoạt động hãy chạy lại phiên bản kernel trước đó (Stable version).
+
 Sau khi Bootloader hoàn tất loading boot image nó sẽ tự động khởi động Kernel đã được chỉ định.
 
-### 1.3. Kernel
- > Kernel chính là trái tim của hệ điều hành bởi lẽ nó sẽ tương tác với phần cứng và đảm nhiệm việc chạy các tiến trình nền(Daemon process), cũng như quản lý file, bộ nhớ,...
+### 1.3. Kernel & System Daemon Process
+ **Kernel** chính là trái tim của hệ điều hành bởi lẽ nó sẽ tương tác với phần cứng và đảm nhiệm việc chạy các tiến trình nền(Daemon process), cũng như quản lý file, bộ nhớ,...
 
 Kernel sẽ tự động chạy tiến trình nền với PID 1, với các phiên bản Linux trở về trước tiến trình nền này được gọi là Init sau này nó được thay đổi bởi với Systemd.
 
