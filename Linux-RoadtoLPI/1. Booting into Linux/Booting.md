@@ -18,13 +18,13 @@ NVRAM(ROM) chứa firmware quản lý tất cả các thành phần Hardware tr�
   ###### Tham khảo Wiki [BIOS](src="https://vi.wikipedia.org/wiki/BIOS")
 
   - **UEFI** viết tắt của Unified Extensible Firmware Interface dịch là "Giao diện firmware mở rộng hợp nhất" là công nghệ thay thế cho BIOS đã có phần lỗi thời.
-  - UEFI là một hệ điều hành tối giản "nằm trên" phần cứng (hardware) và firmware của máy tính. Thay vì được lưu trong firmware giống như BIOS, chương trình UEFI được lưu trữ ở thư mục /EFI/ trong bộ nhớ non-volatile (là bộ nhớ đảm bảo cho dữ liệu không bị hỏng mỗi khi mất điện). Vì vậy, UEFI có thể chứa trong bộ nhớ flash NAND trên bo mạch chính (mainboard) hoặc cũng có thể để trên một ổ đĩa cứng, hay thậm chí là ngay cả trên một vùng tài nguyên mạng được chia sẻ.[1] UEFI sẽ giúp quá trình khởi động an toàn hơn nhờ tính năng Secure Boot
+  - UEFI là một hệ điều hành tối giản "nằm trên" phần cứng (hardware) và firmware của máy tính. Thay vì được lưu trong firmware giống như BIOS, chương trình UEFI được lưu trữ ở thư mục /EFI/ trong bộ nhớ non-volatile (là bộ nhớ đảm bảo cho dữ liệu không bị hỏng mỗi khi mất điện). Vì vậy, UEFI có thể chứa trong bộ nhớ flash NAND trên bo mạch chính (mainboard) hoặc cũng có thể để trên một ổ đĩa cứng, hay thậm chí là ngay cả trên một vùng tài nguyên mạng được chia sẻ (network boot). UEFI sẽ giúp quá trình khởi động an toàn hơn nhờ tính năng Secure Boot
 
   <img src="https://raw.githubusercontent.com/nyugennguyen/selfstudy/master/Linux-RoadtoLPI/Images/UEFI.png">
 
   ###### Tham khảo Wiki [UEFI](src="https://vi.wikipedia.org/wiki/UEFI")
 
-##Vậy tại sao lại thay thế BIOS bằng UEFI?
+### Vậy tại sao lại thay thế BIOS bằng UEFI?
   - Đầu tiên là UEFI cung cấp 1 giao diện đồ họa, trực quan và nhiều option hơn cho người dùng cũng như người quản trị hệ thống, tiện lợi trong việc cấu hình.
   - UEFI hỗ trợ việc sử dụng ổ cứng lớn hơn 2TB, trong khi BIOS không hỗ trợ những ổ cứng với dung lượng lớn.
   - UEFI hỗ trợ network troubleshooting và khả năng kết nối mạng tích hợp sẵn bởi OEM.
